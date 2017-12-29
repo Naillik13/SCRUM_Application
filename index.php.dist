@@ -1,0 +1,41 @@
+<?php
+
+error_reporting(E_ALL);                     //Pas mettre en temps normal, juste pour afficher les erreurs sur mac, rien à voir avec composer
+ini_set('display_errors', 1);   // Idem
+
+require __DIR__. "/bootstrap.php";
+
+/*
+$article = new App\Entity\Article();
+
+try {
+    $article->setId(19);
+    $article->setName("Blabljnbqs&§(&§(§ jhqsc  )sijqa");
+    $article->setStatus(\App\Entity\Article::STATUS_UNPUBLISHED);
+
+    dump($article);
+} catch (Exception $e) {
+    echo "Error, ".$e->getMessage();
+}
+*/
+use App\Entity\Article;
+
+// Save ->persist($object) puis -> flush
+/*
+$article = new Article();
+$article
+    ->setName("jhjsjhh  qsdjksqj qskdjk ")
+    ->setStatus(Article::STATUS_PUBLISHED);
+
+
+$entityManager->persist($article);
+$entityManager->flush();
+
+dump($article);
+*/
+
+//Get one Article or null if it doesn't exis
+
+echo $twig->render('articles.html.twig', [
+        'title' => 'Homepage',
+]);

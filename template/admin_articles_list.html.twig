@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <!--<div class="d-flex">
+        <div class="mr-auto p-2"><p style="font-size: 26px;">Créer un nouvel article :</p></div>
+        <div class="p-2"><button type="submit" class="btn btn-outline-success mr-auto p-2" >Nouvel Article</button></div>
+    </div>-->
+
+    <br>
+    <a href="../admin_articles_new.php" type="submit" class="btn btn-outline-success mr-auto p-2" >Nouvel Article</a>
+    <br><br>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Status</th>
+            <th scope="col">Page</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+
+    {% for article in articles %}
+
+        <tr>
+            <th scope="row">{{ article.id }}</th>
+            <td>{{ article.name }}</td>
+            <td>{{ article.status }}</td>
+            <td>{{ currentPage }}</td>
+            <td>{{ article.date }}</td>
+            <td>
+                <div class="row">
+                <form method="get" action="../admin_articles_edit.php" class="">
+                    <input type="hidden" name="id" value="{{ article.id }}">
+                    <input type="hidden" name="name" value="{{ article.name }}">
+                    <input type="hidden" name="content" value="{{ article.content }}">
+                    <input type="submit" class="btn btn-outline-warning" value="Editer">
+                </form>
+                    <div>&nbsp;</div>
+                <form method="get" action="../admin_articles_delete.php" class="">
+                    <input type="hidden" name="id" value="{{ article.id }}">
+                    <input type="submit" class="btn btn-outline-danger" value="Supprimer">
+                </form>
+                </div>
+            </td>
+        </tr>
+
+    {% endfor %}
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="?page=1">First page</a></li>
+            <li class="page-item {% if currentPage <= 1 %} disabled {% endif %}"><a class="page-link"
+                                                                                    href="?page={{ currentPage - 1 }}">&laquo;</a>
+            </li>
+            {% for i in minPage..(currentPage - 1) if (currentPage > 1) %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+
+            <li class="page-item active"><a class="page-link" href="?page={{ currentPage }}">{{ currentPage }}</a>
+
+                {% for i in (currentPage + 1)..maxPage if (currentPage < maxPagination) %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+            <li class="page-item {% if currentPage >= maxPagination %} disabled {% endif %}"><a class="page-link"
+                                                                                                href="?page={{ currentPage + 1 }}">&raquo;</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="?page={{ maxPagination }}">Last page</a></li>
+        </ul>
+    </nav>
+
+{% endblock %}

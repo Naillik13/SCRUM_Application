@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Articles</h1>
+
+    {% for article in articles %}
+        <div>
+            <h2>{{ article.name }}</h2>
+           <!-- <p class="small">{{ article.slug }}</p>-->
+            <p class="small">{{ article.content }}</p>
+            <div class="d-flex">
+                <label class="small p-2">Publié le : {{ article.date }}</label>
+                <form method="get" action="../article.php" class=" ml-auto p-2">
+                     <input type="hidden" name="title" value="{{ article.name }}">
+                     <input type="hidden" name="content" value="{{ article.content }}">
+                     <input type="hidden" name="date" value="{{ article.date }}">
+                     <button href="#" class="btn btn-large">Lire l'article</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="?page=1">First page</a></li>
+            <li class="page-item {% if currentPage <= 1 %} disabled {% endif %}"><a class="page-link"
+                                                                                    href="?page={{ currentPage - 1 }}">&laquo;</a>
+            </li>
+            {% for i in minPage..(currentPage - 1) if (currentPage > 1) %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+
+            <li class="page-item active"><a class="page-link" href="?page={{ currentPage }}">{{ currentPage }}</a>
+
+                {% for i in (currentPage + 1)..maxPage if (currentPage < maxPagination) %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+            <li class="page-item {% if currentPage >= maxPagination %} disabled {% endif %}"><a class="page-link"
+                                                                                                href="?page={{ currentPage + 1 }}">&raquo;</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="?page={{ maxPagination }}">Last page</a></li>
+        </ul>
+    </nav>
+
+{% endblock %}
