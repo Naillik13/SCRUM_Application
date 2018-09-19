@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <h1 class="text-center">Modification d'Utilisateurs</h1>
+
+    <br><br>
+
+    <div class="text-center">
+       <!-- <form method="post" action="telechargement.php" enctype="multipart/form-data">
+
+            <label for="mon_fichier">Fichier (tous formats | max. 1 Mo) :</label><br />
+            <input type="hidden" name="MAX_FILE_SIZE" value="9999999999999" />
+            <input type="file" name="mon_fichier" id="mon_fichier" /><br />
+
+            <label for="titre">Titre du fichier (max. 50 caractères) :</label><br />
+            <input type="text" name="titre" value="Titre du fichier" id="titre" /><br />
+
+            <label for="description">Description de votre fichier (max. 255 caractères) :</label><br />
+            <textarea name="description" id="description"></textarea><br />
+
+            <input type="submit" name="submit" value="Envoyer" />
+
+        </form>-->
+
+        <form method="post" action="../telechargement.php" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+            <input type="file" name="document" class="btn btn-outline-success">
+
+            <label for="title_document">Titre du fichier :</label><br />
+            <input type="text" name="title_document" placeholder="Nom du fichier" id="title_document" /><br />
+
+            <input type="submit" class="btn btn-success dropdown-toggle" style="margin-top: 20px;">
+        </form>
+    </div>
+{% endblock %}
