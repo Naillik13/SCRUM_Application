@@ -50,7 +50,7 @@ if (!empty($usernameinit) && !empty($passwordinit)) //si username et password so
             $_SESSION['password'] = $user->getPassword();//$user['password']
 
             //dump($_SESSION);
-            header('Location: admin_articles_list.php');
+            header('Location: index.php');
 
         } else
         {

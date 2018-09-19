@@ -16,10 +16,6 @@ ini_set('display_errors', 1);   // Idem
 
 require __DIR__ . "/bootstrap.php";
 
-use App\Entity\Article;
-
-
-
     echo $twig->render('connect.html.twig', [
         'title' => 'Connexion',
     ]);
