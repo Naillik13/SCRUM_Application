@@ -13,7 +13,7 @@ require __DIR__ . "/bootstrap.php";
 
 use App\Entity\User;
 
-if (isset($_SESSION['isConnected']))
+if (isset($_SESSION['isConnected']) && $admin == "admin")
 {
     echo $twig->render('admin_users_new.html.twig', [
         'title' => 'Admin - Création d\'Utilisateurs',

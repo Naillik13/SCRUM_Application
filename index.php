@@ -10,7 +10,7 @@ require __DIR__ . "/bootstrap.php";
 
 
 echo $twig->render('homepage.html.twig', [
-    'title' => 'Accueil - Articles',
+    'title' => 'Accueil',
     'admin' => $admin,
     'isConnected' => isset($_SESSION['isConnected']),
     //'username' => $_SESSION['username'],

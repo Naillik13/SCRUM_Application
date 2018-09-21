@@ -9,12 +9,12 @@ require __DIR__ . "/bootstrap.php";
 
 use App\Entity\Document;
 
-
+if (isset($_SESSION['isConnected']) && $admin == "admin")
+{
 
 /** @var \App\Repository\UserRepository $repoDoc */
 $repoDoc     = $entityManager->getRepository(Document::class);
 $documents = $repoDoc->loadAll(100, 0);
-
 
 echo $twig->render('admin_download.html.twig', [
     'title' => 'Upload de fichier',/*
@@ -23,3 +23,9 @@ echo $twig->render('admin_download.html.twig', [
     'isConnected' => isset($_SESSION['isConnected']),
     //'username' => $_SESSION['username'],
 ]);
+
+}
+else
+{
+    header('Location:login.php');
+}

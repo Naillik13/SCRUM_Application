@@ -11,7 +11,7 @@ ini_set('display_errors', 1);   // Idem
 
 require __DIR__ . "/bootstrap.php";
 
-if (isset($_SESSION['isConnected']))
+if (isset($_SESSION['isConnected']) && $admin == "admin" )
 {
 
     $id = $_GET['id'];

@@ -3,7 +3,9 @@
 {% block main %}
 
     <br>
+    {% if admin|default(false) %}
     <a href="../admin_users_new.php" type="submit" class="btn btn-outline-success mr-auto p-2" >Nouvel Utilisateur</a>
+    {% endif %}
     <br><br>
 
     <table class="table table-hover">
