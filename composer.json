@@ -2,8 +2,8 @@
     "name": "irvyne/php-oop-lesson",
     "authors": [
         {
-            "name": "Thibaud BARDIN",
-            "email": "thibaud.bardin@gmail.com"
+            "name": "Timothée CORRADO",
+            "email": "timothee.corrado@devinci.fr"
         }
     ],
     "require": {
