@@ -41,7 +41,9 @@ if (!empty($usernameinit) && !empty($passwordinit)) //si username et password so
         $password = $user->getPassword();
         dump($user);*/
 
-        if ($usernameinit === $user->getUsername() && password_verify( $passwordinit, $user->getPassword())) {
+        if ($usernameinit === $user->getUsername() && password_verify( $passwordinit, $user->getPassword()))
+            /*($usernameinit === $user->getUsername() && $passwordinit === $user->getPassword()) */
+        {
             echo 'connecté';
 
             $_SESSION['isConnected']= true;

@@ -13,15 +13,21 @@ ini_set('display_errors', 1);   // Idem
 require __DIR__ . "/bootstrap.php";
 
 use App\Entity\Document;
+use App\Entity\User;
+use App\Repository\UserRepository;
 
 $titledoc = $_POST['title_document'];
+$useremail = $_POST['user'];
+
+$repo     = $entityManager->getRepository(User::class);
+$users = $repo->loadAll(500, 0);
 
 $maxsize = 10000000;
 $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png', 'odt', 'odf', 'xdt', 'xml', 'pdf', 'doc', 'docx' );
 
-if (isset($titledoc) && !empty($titledoc) && isset($_FILES['document']) && !empty($_FILES['document']))
+if (isset($useremail) && !empty($useremail) && isset($titledoc) && !empty($titledoc) && isset($_FILES['document']) && !empty($_FILES['document']))
 {
-    if ($_FILES['document']['error'] > 0)
+    if ($_FILES['document']['error'] > 0 )
     {
         $erreur = "Erreur lors du transfert";
     } else
@@ -46,11 +52,17 @@ if (isset($titledoc) && !empty($titledoc) && isset($_FILES['document']) && !empt
 
                 $repo = $entityManager->getRepository(Document::class);
 
+                $repo_user     = $entityManager->getRepository(User::class);
+                $user = $repo_user->findOneBy(['username' => $useremail]);
+
+
                 $document = new Document();
 
                 $document->setName($titledoc);
                 $document->setFile($nom);
                 $document->setType($_FILES['document']['type']);
+
+                $document->setUser($user);
 
                 $entityManager->persist($document);
                 $entityManager->flush();

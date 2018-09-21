@@ -43,12 +43,20 @@ class Document
     private $file;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $user;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string")
      */
     private $type;
 
+    const MAX_PER_PAGE       = 10;
 
     /**
      * @return int
@@ -131,6 +139,27 @@ class Document
 
         return $this;
     }
+
+
+    /**
+     * @return User
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return User
+     * @param User $id
+     */
+    public function setUser($id): Document
+    {
+        $this->user = $id;
+
+        return $this;
+    }
+
 
     /**
      * @return string

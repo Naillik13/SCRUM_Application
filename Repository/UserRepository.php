@@ -38,6 +38,13 @@ class UserRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->execute();
     }
+    public function selectByMail($username)
+    {
+        $queryBuilder = $this->createQueryBuilder('u');
+        $queryBuilder->select($username);
+
+        return $queryBuilder->getQuery()->execute();
+    }
 
     /*
     function getUser(PDO $db, $id)
