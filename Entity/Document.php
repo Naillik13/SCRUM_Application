@@ -49,6 +49,7 @@ class Document
      */
     private $type;
 
+    const MAX_PER_PAGE       = 10;
 
     /**
      * @return int
