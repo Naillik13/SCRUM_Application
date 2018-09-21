@@ -50,9 +50,14 @@ if (!empty($usernameinit) && !empty($passwordinit)) //si username et password so
             $_SESSION['id'] = $user->getId();
             $_SESSION['username'] = $user->getUsername();//$user['username']
             $_SESSION['password'] = $user->getPassword();//$user['password']
-
+            $_SESSION['role'] = $user->getRole();
             //dump($_SESSION);
-            header('Location: index.php');
+            if ( $_SESSION['role'] == "user") {
+                header('Location: user_space.php');
+            } else {
+                header('Location: index.php');
+
+            }
 
         } else
         {

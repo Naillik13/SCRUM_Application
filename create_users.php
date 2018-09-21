@@ -17,9 +17,10 @@ require_once 'vendor/autoload.php';
 use App\Entity\User;
 
 $username = $_POST['username'];
+$role = $_POST['role'];
 
 
-if (isset($_POST['username']) AND !empty($_POST['username']) AND filter_var( $_POST['username'], FILTER_VALIDATE_EMAIL) )
+if (isset($_POST['role']) AND !empty($_POST['role']) AND isset($_POST['username']) AND !empty($_POST['username']) AND filter_var( $_POST['username'], FILTER_VALIDATE_EMAIL) )
 {
 
     $repo = $entityManager->getRepository(User::class);
@@ -29,6 +30,7 @@ if (isset($_POST['username']) AND !empty($_POST['username']) AND filter_var( $_P
     $user->setUsername($username);
     $password = genererChaineAleatoire();
     $user->setPassword($password);
+    $user->setRole($role);
    sendPassword($username, $password);
 
     $entityManager->persist($user);

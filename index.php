@@ -7,8 +7,6 @@ ini_set('display_errors', 1);   // Idem
 
 require __DIR__ . "/bootstrap.php";
 
-$password = password_hash( 'KGALEA2112', PASSWORD_DEFAULT);
-
 echo $twig->render('homepage.html.twig', [
     'title' => 'Accueil - Articles',
     'password' => $password,

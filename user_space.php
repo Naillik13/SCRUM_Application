@@ -18,7 +18,14 @@ if (isset($_SESSION['isConnected']))
 
     /** @var \App\Repository\DocumentRepository $repo */
     $repo     = $entityManager->getRepository(Document::class);
-    $users = $repo->loadAll(Document::MAX_PER_PAGE, ($page - 1) * 10);
+    if ($_SESSION['role'] === 'user'){
+        $files = $repo->findBy(array('user' => $_SESSION['id']));
+    }
+     else {
+         $files = $repo->loadAll(Document::MAX_PER_PAGE, ($page - 1) * 10);
+    }
+
+
     $count    = $repo->count();
     $maxPagination  = (int)ceil($count / Document::MAX_PER_PAGE);
     $minPage = (int) max(1, ($page-5));
@@ -52,7 +59,7 @@ if (isset($_SESSION['isConnected']))
         'maxPagination' => $maxPagination,
         'minPage' => $minPage,
         'maxPage' => $maxPage,
-        'users' => $users,
+        'users' => $files,
         'isConnected' => isset($_SESSION['isConnected']),
 
 
