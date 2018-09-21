@@ -24,3 +24,12 @@ $twig = new Twig_Environment($loader, array(
 
 
 session_start();
+
+if (isset($_SESSION['isConnected']) && $_SESSION['role'] == 'admin')
+{
+    $admin = true;
+
+} else
+{
+    $admin = false;
+}

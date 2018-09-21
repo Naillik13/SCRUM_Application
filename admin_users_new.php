@@ -17,6 +17,7 @@ if (isset($_SESSION['isConnected']))
 {
     echo $twig->render('admin_users_new.html.twig', [
         'title' => 'Admin - Création d\'Utilisateurs',
+        'admin' => $admin,
         'isConnected' => isset($_SESSION['isConnected']),
 
     ]);

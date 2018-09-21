@@ -60,6 +60,7 @@ if (isset($_SESSION['isConnected']))
         'minPage' => $minPage,
         'maxPage' => $maxPage,
         'users' => $files,
+        'admin' => $admin,
         'isConnected' => isset($_SESSION['isConnected']),
 
 

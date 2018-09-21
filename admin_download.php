@@ -19,7 +19,7 @@ $documents = $repoDoc->loadAll(100, 0);
 echo $twig->render('admin_download.html.twig', [
     'title' => 'Upload de fichier',/*
     'documents' => $documents,*/
-
+    'admin' => $admin,
     'isConnected' => isset($_SESSION['isConnected']),
     //'username' => $_SESSION['username'],
 ]);

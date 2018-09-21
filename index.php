@@ -7,9 +7,11 @@ ini_set('display_errors', 1);   // Idem
 
 require __DIR__ . "/bootstrap.php";
 
+
+
 echo $twig->render('homepage.html.twig', [
     'title' => 'Accueil - Articles',
-    'password' => $password,
+    'admin' => $admin,
     'isConnected' => isset($_SESSION['isConnected']),
     //'username' => $_SESSION['username'],
 ]);

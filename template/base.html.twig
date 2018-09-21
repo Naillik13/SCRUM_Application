@@ -16,7 +16,7 @@
         {% block header %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="index.php">Accueil</a>
-                {% if isConnected|default(false) %}
+                {% if isConnected|default(false) and admin|default(false) %}
 
                     <a class="navbar-brand" href="admin_users_list.php">Liste d'utilisateurs</a>
                     <a class="navbar-brand" href="admin_download.php">Mise en ligne de docs</a>
