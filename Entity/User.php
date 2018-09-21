@@ -38,6 +38,13 @@ class User
      */
     private $password;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $role;
+
     const MAX_PER_PAGE       = 10;
 
     /**
@@ -96,6 +103,25 @@ class User
     {
         $this->password = password_hash( $password, PASSWORD_DEFAULT);
         
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @return User
+     * @param string $role
+     */
+    public function setRole($role): User
+    {
+        $this->role = $role;
+
         return $this;
     }
 }
