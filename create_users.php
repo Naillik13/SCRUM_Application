@@ -79,3 +79,33 @@ $message = (new Swift_Message('MDP - SCRUM App'))
 // Send the message
 $result = $mailer->send($message);
 }
+
+/*SendPassword ne fonctionne pas en ligne, utiliser donc sendPassword2*/
+
+function sendPassword2($email, $password)
+{
+    $header = "MIME-Version: 1.0\r\n";
+    $header .= 'From:"scrum.fr"<support@scrum.fr>' . "\n";
+    $header .= 'Content-Type:text/html; charset="utf-8"' . "\n";
+    $header .= 'Content-Transfer-Encoding: 8bit';
+
+    $message =
+        '
+         <html>
+            <body>
+               <div align="center">
+                  <br />
+                  <u>Votre identifiant :</u>' . $email . '<br /><br />
+                  <u>Votre mot de passe :</u>' . $password . '<br /><br />
+                  <u>Message :</u> <br /><br /><br />
+                     
+                     Vous pouvez dés à présent vous connecter sur http://trib.agency/iim_scrum/login.php                    
+                        
+                  <br />
+               </div>
+            </body>
+         </html>
+         ';
+
+    mail($email, "Votre mot de passe SCRUM", $message, $header);
+}
